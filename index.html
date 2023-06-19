@@ -17,7 +17,23 @@
 
     <a-entity id="cameraRig" spawn-in-circle="radius:3">
 			<!-- camera -->
-			<a-entity class="avatar-head" camera="near:0.01;" look-controls="pointerLockEnabled: false" wasd-controls="acceleration:20;" position="0 1.65 0"></a-entity>
+			<a-entity class="avatar-head" camera="near:0.01;" cursor="rayOrigin: mouse" look-controls="pointerLockEnabled: false" wasd-controls="acceleration:20;" position="0 1.65 0">
+<!--         <a-entity id="download-buttonid" geometry="primitive: box" material="color: red" position="-3 1 -2.5"></a-entity> -->
+        <a-entity
+          style="
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+          "
+          id="download-buttonid"
+          class="button"
+          position="-4 1.7 -2.5"
+          geometry="primitive: plane; width: 1; height: 0.3;"
+          material="color: #4cc3d9; shader: flat;"
+          text="value: Download Cloud - csv; color: white; align: center; width: 2;"
+          onmouseenter="this.setAttribute('scale', '1.1 1.1 1.1')"
+          onmouseleave="this.setAttribute('scale', '1 1 1')"></a-entity>
+        
+      </a-entity>
 
 			<!-- Hand tracking -->
 			<a-entity handy-controls>
@@ -46,8 +62,7 @@
   scale="1 1 1"
   classifier 
   lasloader="
-        url: https://rawhitten.github.io/chunk.laz;
-    <!--url: https://rawhitten.github.io/pdal.southwest.09242022.laz;-->
+    url: https://rawhitten.github.io/pdal.southwest.09242022.laz;
     downid: #download-buttonid;
     cameraEl: #camera;
     pointcloudColoring: classification; 
@@ -79,6 +94,21 @@
     
   </body>
   
-
+  <script>
+  // console.log("Hello")
+  const pointcloud = document.getElementById("pointcloud");
+  // console.log("pt -")
+  // console.log(pointcloud)
+  console.log(window.location.search)
+  var url = new URL(window.location.href);
+  var PTlink = url.searchParams.get("link");
+  console.log("Link for redirection:")
+  console.log(PTlink)
+    if(PTlink != null){
+      pointcloud.setAttribute('lasloader', {url: PTlink});
+    }
+  
+//     url: https://rawhitten.github.io/chunk.laz;
+  </script>
   
 </html>
