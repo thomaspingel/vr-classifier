@@ -1,6 +1,6 @@
 # vr-classifier
 
-Aligned to impartial-lumpy-ear, 6/19/2023
+Aligned to OGIS Demo version
 
 http://thomaspingel.github.io/vr-classifier
 
